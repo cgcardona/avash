@@ -9,9 +9,9 @@ import (
 
 // FlagsToArgs converts a `Flags` struct into a CLI command flag string
 func FlagsToArgs(flags Flags, basedir string, sepBase bool) ([]string, Metadata) {
-    // Port targets
-    httpPortString := strconv.FormatUint(uint64(flags.HTTPPort), 10)
-    stakingPortString := strconv.FormatUint(uint64(flags.StakingPort), 10)
+	// Port targets
+	httpPortString := strconv.FormatUint(uint64(flags.HTTPPort), 10)
+	stakingPortString := strconv.FormatUint(uint64(flags.StakingPort), 10)
 
 	// Paths/directories
 	dbPath := basedir + "/" + flags.DBDir
@@ -25,13 +25,13 @@ func FlagsToArgs(flags Flags, basedir string, sepBase bool) ([]string, Metadata)
 
 	wd, _ := os.Getwd()
 	// If the path given in the flag doesn't begin with "/", treat it as relative
-    // to the directory of the avash binary
-    httpCertFile := flags.HTTPTLSCertFile
+	// to the directory of the avash binary
+	httpCertFile := flags.HTTPTLSCertFile
 	if httpCertFile != "" && string(httpCertFile[0]) != "/" {
 		httpCertFile = fmt.Sprintf("%s/%s", wd, httpCertFile)
 	}
 
-    httpKeyFile := flags.HTTPTLSKeyFile
+	httpKeyFile := flags.HTTPTLSKeyFile
 	if httpKeyFile != "" && string(httpKeyFile[0]) != "/" {
 		httpKeyFile = fmt.Sprintf("%s/%s", wd, httpKeyFile)
 	}
@@ -78,9 +78,10 @@ func FlagsToArgs(flags Flags, basedir string, sepBase bool) ([]string, Metadata)
 		"--staking-port=" + stakingPortString,
 		"--staking-tls-key-file=" + stakerKeyFile,
 		"--staking-tls-cert-file=" + stakerCertFile,
+		"--block-stats-output=" + flags.BlockStatsOutput,
 	}
 	if sepBase {
-		args = append(args, "--data-dir=" + basedir)
+		args = append(args, "--data-dir="+basedir)
 	}
 	args = removeEmptyFlags(args)
 

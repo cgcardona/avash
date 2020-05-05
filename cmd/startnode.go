@@ -23,7 +23,7 @@ var flags node.Flags
 var StartnodeCmd = &cobra.Command{
 	Use:   "startnode [node name] args...",
 	Short: "Starts a node process and gives it a name.",
-	Long:  `Starts an ava client node using pmgo and gives it a name. Example:
+	Long: `Starts an ava client node using pmgo and gives it a name. Example:
 	startnode MyNode1 --public-ip=127.0.0.1 --staking-port=9651 --http-port=9650 ... `,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {
@@ -42,11 +42,11 @@ var StartnodeCmd = &cobra.Command{
 		}
 
 		err := validateConsensusArgs(
-            flags.SnowSampleSize,
-            flags.SnowQuorumSize,
-            flags.SnowVirtuousCommitThreshold,
-            flags.SnowRogueCommitThreshold,
-        )
+			flags.SnowSampleSize,
+			flags.SnowQuorumSize,
+			flags.SnowVirtuousCommitThreshold,
+			flags.SnowRogueCommitThreshold,
+		)
 		if err != nil {
 			log.Error(err.Error())
 			return
@@ -99,10 +99,10 @@ func validateConsensusArgs(k int, alpha int, beta1 int, beta2 int) error {
 }
 
 func init() {
-    flags = node.DefaultFlags()
+	flags = node.DefaultFlags()
 	StartnodeCmd.Flags().StringVar(&flags.ClientLocation, "client-location", flags.ClientLocation, "Path to AVA node client, defaulting to the config file's value.")
 	StartnodeCmd.Flags().StringVar(&flags.Meta, "meta", flags.Meta, "Override default metadata for the node process.")
-    StartnodeCmd.Flags().StringVar(&flags.DataDir, "data-dir", flags.DataDir, "Name of directory for the data stash.")
+	StartnodeCmd.Flags().StringVar(&flags.DataDir, "data-dir", flags.DataDir, "Name of directory for the data stash.")
 
 	StartnodeCmd.Flags().BoolVar(&flags.AssertionsEnabled, "assertions-enabled", flags.AssertionsEnabled, "Turn on assertion execution.")
 	StartnodeCmd.Flags().UintVar(&flags.AvaTxFee, "ava-tx-fee", flags.AvaTxFee, "Ava transaction fee, in $nAva.")
@@ -111,7 +111,7 @@ func init() {
 	StartnodeCmd.Flags().BoolVar(&flags.APIKeystoreEnabled, "api-keystore-enabled", flags.APIKeystoreEnabled, "If true, this node exposes the Keystore API")
 	StartnodeCmd.Flags().BoolVar(&flags.APIMetricsEnabled, "api-metrics-enabled", flags.APIMetricsEnabled, "If true, this node exposes the Metrics API")
 	StartnodeCmd.Flags().BoolVar(&flags.APIIPCsEnabled, "api-ipcs-enabled", flags.APIIPCsEnabled, "If true, IPCs can be opened")
-	
+
 	StartnodeCmd.Flags().StringVar(&flags.PublicIP, "public-ip", flags.PublicIP, "Public IP of this node.")
 	StartnodeCmd.Flags().StringVar(&flags.NetworkID, "network-id", flags.NetworkID, "Network ID this node will connect to.")
 	StartnodeCmd.Flags().UintVar(&flags.XputServerPort, "xput-server-port", flags.XputServerPort, "Port of the deprecated throughput test server.")
@@ -143,4 +143,6 @@ func init() {
 	StartnodeCmd.Flags().UintVar(&flags.StakingPort, "staking-port", flags.StakingPort, "Port of the consensus server.")
 	StartnodeCmd.Flags().StringVar(&flags.StakingTLSCertFile, "staking-tls-cert-file", flags.StakingTLSCertFile, "TLS certificate file for staking connections. Relative to the avash binary if doesn't start with '/'. Ex: certs/keys1/staker.crt")
 	StartnodeCmd.Flags().StringVar(&flags.StakingTLSKeyFile, "staking-tls-key-file", flags.StakingTLSKeyFile, "TLS private key file for staking connections. Relative to the avash binary if doesn't start with '/'. Ex: certs/keys1/staker.key")
+
+	StartnodeCmd.Flags().StringVar(&flags.BlockStatsOutput, "block-stats-output", flags.BlockStatsOutput, "Output file for block stats log")
 }
