@@ -144,5 +144,6 @@ func init() {
 	StartnodeCmd.Flags().StringVar(&flags.StakingTLSCertFile, "staking-tls-cert-file", flags.StakingTLSCertFile, "TLS certificate file for staking connections. Relative to the avash binary if doesn't start with '/'. Ex: certs/keys1/staker.crt")
 	StartnodeCmd.Flags().StringVar(&flags.StakingTLSKeyFile, "staking-tls-key-file", flags.StakingTLSKeyFile, "TLS private key file for staking connections. Relative to the avash binary if doesn't start with '/'. Ex: certs/keys1/staker.key")
 
-	StartnodeCmd.Flags().StringVar(&flags.BlockStatsOutput, "block-stats-output", flags.BlockStatsOutput, "Output file for block stats log")
+	StartnodeCmd.Flags().BoolVar(&flags.BlockStatsOutputEnabled, "block-stats-output-enabled", flags.BlockStatsOutputEnabled, "Whether block stats output should be enabled")
+	StartnodeCmd.Flags().StringVar(&flags.BlockStatsOutputFile, "block-stats-output-file", flags.BlockStatsOutputFile, "Output file for block stats log")
 }

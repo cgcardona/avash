@@ -69,7 +69,8 @@ type Flags struct {
 	StakingTLSCertFile string
 
 	// Snowman benchmark
-	BlockStatsOutput string
+	BlockStatsOutputEnabled bool
+	BlockStatsOutputFile    string
 }
 
 // SetDefaults sets any zero-value field to its default value
@@ -121,6 +122,6 @@ func DefaultFlags() Flags {
 		StakingPort:                  9651,
 		StakingTLSKeyFile:            "",
 		StakingTLSCertFile:           "",
-		BlockStatsOutput:             "block-stats.log",
+		BlockStatsOutputEnabled:      false,
 	}
 }
