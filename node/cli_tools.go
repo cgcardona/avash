@@ -79,7 +79,7 @@ func FlagsToArgs(flags Flags, basedir string, sepBase bool) ([]string, Metadata)
 		"--staking-tls-key-file=" + stakerKeyFile,
 		"--staking-tls-cert-file=" + stakerCertFile,
 		"--block-stats-output-enabled=" + strconv.FormatBool(flags.BlockStatsOutputEnabled),
-		"--block-stats-output=" + flags.BlockStatsOutputFile,
+		"--block-stats-output-file=" + flags.BlockStatsOutputFile,
 	}
 	if sepBase {
 		args = append(args, "--data-dir="+basedir)
