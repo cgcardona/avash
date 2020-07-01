@@ -101,6 +101,8 @@ func FlagsToArgs(flags Flags, basedir string, sepBase bool) ([]string, Metadata)
 		StakingTLSEnabled: flags.StakingTLSEnabled,
 		StakerCertPath:    stakerCertFile,
 		StakerKeyPath:     stakerKeyFile,
+		APIRequireAuth:    flags.APIRequireAuth,
+		APIAuthPassword:   flags.APIAuthPassword,
 	}
 
 	return args, metadata
